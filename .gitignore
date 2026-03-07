@@ -1,10 +1,11 @@
-# Byte-compiled / optimized / DLL files
+# ============================================================
+# Python
+# ============================================================
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
+*.pyd
 
 # Distribution / packaging
 .Python
@@ -27,8 +28,6 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
@@ -36,7 +35,9 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# ============================================================
+# Testing & Coverage
+# ============================================================
 htmlcov/
 .tox/
 .nox/
@@ -46,12 +47,14 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
-*.s将被*
+*.lcov
 .hypothesis/
 .pytest_cache/
 cover/
 
-# Environments
+# ============================================================
+# Virtual Environments
+# ============================================================
 .env
 .venv
 env/
@@ -59,22 +62,109 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.python-version
 
+# ============================================================
 # Jupyter Notebook
-.ipynb_checkpoints
+# ============================================================
+.ipynb_checkpoints/
+*.ipynb_checkpoints
 
-# VS Code / IDEs
-.vscode/
+# ============================================================
+# Data Science / ML artifacts
+# ============================================================
+# Datasets (large or generated)
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.joblib
+
+# Model files
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.pb
+*.tflite
+models/
+checkpoints/
+
+# MLflow / experiment tracking
+mlruns/
+mlartifacts/
+
+# ============================================================
+# Apache Airflow
+# ============================================================
+airflow.db
+airflow.cfg
+airflow_generate_fernet_key.py
+standalone_admin_password.txt
+logs/
+airflow/logs/
+airflow/plugins/
+airflow/dags/__pycache__/
+webserver_config.py
+.airflow/
+
+# ============================================================
+# PyCharm / IntelliJ IDEA
+# ============================================================
 .idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
 
+# ============================================================
+# VS Code
+# ============================================================
+.vscode/
+*.code-workspace
+
+# ============================================================
 # OS generated files
+# ============================================================
+# macOS
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
+.AppleDouble
+.LSOverride
+
+# Windows
 ehthumbs.db
 Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
 
-# Other
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================================
+# Logs & temp files
+# ============================================================
 *.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.orig
+tmp/
+temp/
