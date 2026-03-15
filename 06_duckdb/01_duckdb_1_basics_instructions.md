@@ -54,7 +54,10 @@ df = pd.DataFrame({
 # 방법 1: register()로 이름 붙이기
 conn = duckdb.connect()
 conn.register("employees", df)
-result = conn.execute("SELECT * FROM employees WHERE score > 80").fetchdf()
+result = conn.execute("SELECT * FROM e
+
+
+mployees WHERE score > 80").fetchdf()
 
 # 방법 2: Python 변수명을 SQL에서 직접 참조 (빠른 탐색용)
 result = duckdb.query("SELECT * FROM df WHERE score > 80").df()

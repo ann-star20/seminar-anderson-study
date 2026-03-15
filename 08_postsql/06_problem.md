@@ -1,4 +1,117 @@
-# 실전 문제 1: 활성 고객 한정 우수 직원 평가 (GROUP BY, JOIN)
+# 실전 문제 1: 영화 언어 조회 (JOIN)
+
+**배경 (Scenario)**
+고객들에게 영화의 기본 언어 정보를 함께 제공하려고 합니다. 영화 제목과 해당 영화의 언어 이름을 확인해주세요.
+
+**요구사항 (Requirements)**
+1. **대상 선별**: `film`, `language` 테이블을 활용하세요.
+2. **최종 결과물**:
+   - `title`: 영화 제목
+   - `name`: 언어 이름
+3. **정렬**: 영화 제목(`title`)을 기준으로 오름차순 정렬하세요.
+
+---
+
+**💡 관련 테이블 (Tables)**
+- `film`: 영화 정보 (`language_id` 컬럼 포함)
+- `language`: 데이터베이스 내 언어 정보
+
+<br>
+
+---
+
+| title | name |
+| :--- | :--- |
+| Academy Dinosaur | English              |
+| Ace Goldfinger | English              |
+| Adaptation Holes | English              |
+| Affair Prejudice | English              |
+| African Egg | English              |
+| Agent Truman | English              |
+| Airplane Sierra | English              |
+| Airport Pollock | English              |
+| Alabama Devil | English              |
+| Aladdin Calendar | English              |
+
+
+
+# 실전 문제 2: 고객 주소 정보 조회 (JOIN)
+
+**배경 (Scenario)**
+배송 안내를 위해 고객의 상세 주소 정보가 필요합니다. 고객의 이름과 이메일, 그리고 등록된 주소를 추출해주세요.
+
+**요구사항 (Requirements)**
+1. **대상 선별**: `customer`, `address` 테이블을 활용하세요.
+2. **최종 결과물**:
+   - `first_name`: 고객 이름
+   - `last_name`: 고객 성
+   - `email`: 이메일
+   - `address`: 주소
+3. **정렬**: 고객의 이름(`first_name`)을 기준으로 오름차순 정렬하세요.
+
+---
+
+**💡 관련 테이블 (Tables)**
+- `customer`: 고객 정보 (`address_id` 컬럼 포함)
+- `address`: 주소 정보
+
+<br>
+
+---
+
+| first\_name | last\_name | email | address |
+| :--- | :--- | :--- | :--- |
+| Aaron | Selby | aaron.selby@sakilacustomer.org | 1519 Santiago de los Caballeros Loop |
+| Adam | Gooch | adam.gooch@sakilacustomer.org | 230 Urawa Drive |
+| Adrian | Clary | adrian.clary@sakilacustomer.org | 1986 Sivas Place |
+| Agnes | Bishop | agnes.bishop@sakilacustomer.org | 866 Shivapuri Manor |
+| Alan | Kahn | alan.kahn@sakilacustomer.org | 753 Ilorin Avenue |
+| Albert | Crouse | albert.crouse@sakilacustomer.org | 1641 Changhwa Place |
+| Alberto | Henning | alberto.henning@sakilacustomer.org | 502 Mandi Bahauddin Parkway |
+| Alex | Gresham | alex.gresham@sakilacustomer.org | 251 Florencia Drive |
+| Alexander | Fennell | alexander.fennell@sakilacustomer.org | 231 Kaliningrad Place |
+| Alfred | Casillas | alfred.casillas@sakilacustomer.org | 1727 Matamoros Place |
+
+
+
+
+# 실전 문제 3: 도시 및 국가 정보 조회 (JOIN)
+
+**배경 (Scenario)**
+각 도시에 대해 어느 국가에 속해 있는지 알아보기 위해 도시 이름과 해당 국가 이름을 함께 나열해주세요.
+
+**요구사항 (Requirements)**
+1. **대상 선별**: `city`, `country` 테이블을 활용하세요.
+2. **최종 결과물**:
+   - `city`: 도시 이름
+   - `country`: 국가 이름
+3. **정렬**: 국가 이름(`country`) 오름차순, 동일한 국가일 경우 도시 이름(`city`) 오름차순 정렬하세요.
+
+---
+
+**💡 관련 테이블 (Tables)**
+- `city`: 도시 정보 (`country_id` 컬럼 포함)
+- `country`: 국가 정보 
+
+<br>
+
+---
+
+| city | country |
+| :--- | :--- |
+| Kabul | Afghanistan |
+| Batna | Algeria |
+| Bchar | Algeria |
+| Skikda | Algeria |
+| Tafuna | American Samoa |
+| Benguela | Angola |
+| Namibe | Angola |
+| South Hill | Anguilla |
+| Almirante Brown | Argentina |
+| Avellaneda | Argentina |
+
+
+# 실전 문제 4: 활성 고객 한정 우수 직원 평가 (GROUP BY, JOIN)
 
 **배경 (Scenario)**
 인사팀(HR)에서 결제 처리 건수가 많고 금액이 높은 우수 직원을 포상하고자 합니다. 단, 회사의 방침상 현재 활성 상태인 고객(Active Customer)이 결제한 금액만 직원의 실적으로 인정하기로 했습니다. (비활성 고객의 결제건은 제외)
@@ -25,8 +138,16 @@
 <br>
 
 ---
+**정답**
 
-# 실전 문제 2: 첫 대여 기념일 이메일 발송 타겟 추출 (PARTITION BY, JOIN)
+| staff\_id | first\_name | last\_name | total\_active\_customer\_payment |
+| :--- | :--- | :--- | :--- |
+| 2 | Jon | Stephens | 30260.89 |
+| 1 | Mike | Hillyer | 29540.84 |``
+---
+
+
+# 실전 문제 5: 첫 대여 기념일 이메일 발송 타겟 추출 (PARTITION BY, JOIN)
 
 **배경 (Scenario)**
 고객 서비스(CS) 팀에서 당사 서비스를 처음 이용했던 순간을 기념하기 위해, 모든 고객에게 "당신의 첫 대여 영화는 OOO 였습니다!"라는 내용의 감사 이메일을 보내려고 합니다. 
@@ -57,7 +178,26 @@
 
 ---
 
-# 실전 문제 3: 특정 등급 영화의 대여 건수와 인기도 통계 (LEFT JOIN, GROUP BY, CASE)
+**정답**
+
+| customer\_id | customer\_name | first\_rental\_date | first\_rented\_film\_title |
+| :--- | :--- | :--- | :--- |
+| 1 | Mary Smith | 2005-05-25 11:30:37.000000 | Patient Sister |
+| 2 | Patricia Johnson | 2005-05-27 00:09:24.000000 | Doors President |
+| 3 | Linda Williams | 2005-05-27 17:17:09.000000 | Rings Heartbreakers |
+| 4 | Barbara Jones | 2005-06-15 09:31:28.000000 | Dogma Family |
+| 5 | Elizabeth Brown | 2005-05-29 07:25:16.000000 | Tootsie Pilot |
+| 6 | Jennifer Davis | 2005-05-25 08:43:32.000000 | Submarine Bed |
+| 7 | Maria Miller | 2005-05-25 06:04:08.000000 | Ridgemont Submarine |
+| 8 | Susan Wilson | 2005-05-30 03:43:54.000000 | Northwest Polish |
+| 9 | Margaret Moore | 2005-05-27 05:01:28.000000 | Mulan Moon |
+| 10 | Dorothy Taylor | 2005-05-31 19:36:30.000000 | Snowman Rollercoaster |
+
+---
+
+
+
+# 실전 문제 6: 특정 등급 영화의 대여 건수와 인기도 통계 (LEFT JOIN, GROUP BY, CASE)
 
 **배경 (Scenario)**
 재고 관리 팀에서 영화 등급별 수요를 파악하고 있습니다. 이번에는 'PG-13' 또는 'R' 등급을 받은 영화들만을 대상으로, 각 영화가 누적으로 몇 번이나 대여되었는지 확인하고 인기도(상태)를 라벨로 붙여 보고서를 작성하고자 합니다.
@@ -92,71 +232,17 @@
 
 ---
 
-# 실전 문제 4: VIP 고객 프로파일링 및 타겟 마케팅 (Complex CTE & Window Function)
+**정답**
 
-**배경 (Scenario)**
-마케팅 팀에서 당사의 우수 고객(VIP)을 대상으로 개인화된 맞춤형 추천 마케팅 캠페인을 기획하고 있습니다. 
-마케팅 팀은 누적 결제 금액(Total Spend)을 기준으로 상위 50명의 VIP 고객을 추출하고, 이들에게 각자가 가장 선호하는 영화 카테고리(장르)의 신작 안내 메일을 보내려고 합니다.
-
-**요구사항 (Requirements)**
-1. **VIP 고객 선정**: `payment` 테이블을 활용하여 누적 결제 금액(`amount`의 합계)이 가장 높은 상위 50명의 고객을 찾으세요.
-2. **선호 카테고리 도출**: 이 상위 50명의 고객이 각각 대여한 영화의 내역을 분석하여, 가장 많이 대여한 영화 카테고리(장르)를 알아내야 합니다. 
-   - 대여 횟수가 가장 많은 카테고리가 여러 개일 경우, 카테고리 이름(`name`)의 알파벳 오름차순으로 가장 우선하는 하나만 선택하세요. (힌트: `ROW_NUMBER()` 윈도우 함수 사용)
-3. **최종 결과물**: 쿼리의 결과는 다음의 컬럼들을 포함해야 합니다.
-   - `customer_id`: 고객 ID
-   - `first_name`: 고객 이름
-   - `last_name`: 고객 성
-   - `total_spent`: 총 결제 금액
-   - `favorite_category`: 가장 많이 대여한 카테고리명
-   - `favorite_category_rental_count`: 해당 선호 카테고리의 총 대여 횟수
-4. **정렬**: 총 결제 금액(`total_spent`)을 기준으로 내림차순 정렬하세요.
-
----
-
-**💡 관련 테이블 (Tables)**
-- `customer`: 고객 정보
-- `payment`: 결제 내역
-- `rental`: 대여 내역
-- `inventory`: 재고 정보
-- `film_category`: 영화와 카테고리 연결 정보
-- `category`: 영화 카테고리 정보
-
-**💡 구현 힌트**
-- **1단계**: 먼저 고객별 총 결제 금액을 집계하고 상위 50명만 추출하는 임시 테이블(CTE) 혹은 서브쿼리를 작성해 보세요.
-- **2단계**: 고객별로 각 카테고리마다 몇 번 대여했는지 집계하고, 그에 따른 순위를 매기는 CTE를 작성해 보세요. 이 때 `rental`, `inventory`, `film_category`, `category` 테이블의 조인이 필요합니다.
-- **3단계**: 1단계와 2단계의 결과를 조인하고, 2단계 결과에서 순위가 1위인 카테고리 정보만을 필터링하여 최종 결과를 도출하세요.
-
-<br>
-
----
-
-# 실전 문제 5: 재고 최적화를 위한 실적 저조 영화 분석 (Pivot & Conditional Aggregation)
-
-**배경 (Scenario)**
-매장의 공간은 한정되어 있으므로, 렌탈 실적이 저조한 DVD 타이틀을 파악하여 재고를 정리하거나 프로모션을 진행해야 합니다. 특히 여러 지점에서 모두 재고를 보유하고 있음에도 불구하고 대여 실적이 처참한 영화들을 찾아내고자 합니다.
-
-**요구사항 (Requirements)**
-1. **재고 파악**: 1번 매장(`store_id = 1`)과 2번 매장(`store_id = 2`)에 존재하는 각 영화의 재고(`inventory`) 수량을 파악하세요. 
-2. **저조한 실적 필터링**: 두 매장에 재고가 **모두 1개 이상** 있으면서, 전체 누적 대여(`rental`) 횟수가 **10회 이하**인 영화만 추출하세요. (한 번도 대여되지 않은 항목도 포함될 수 있도록 `LEFT JOIN` 활용을 고민해보세요.)
-3. **최종 결과물**: 쿼리의 결과는 다음의 컬럼들을 포함해야 합니다.
-   - `film_id`: 영화 ID
-   - `title`: 영화 제목
-   - `category_name`: 카테고리 이름
-   - `store1_inventory`: 1번 매장 재고 수량
-   - `store2_inventory`: 2번 매장 재고 수량
-   - `total_rentals`: 총 대여 횟수 (대여된 적이 없으면 0)
-4. **정렬**: 총 대여 횟수를 기준으로 오름차순, 대여 횟수가 같으면 영화 제목 알파벳 오름차순으로 정렬하세요.
-
----
-
-**💡 관련 테이블 (Tables)**
-- `film`: 영화 기본 정보
-- `film_category`: 영화와 카테고리 연결 정보
-- `category`: 영화 카테고리 정보
-- `inventory`: 보관 중인 재고 내역
-- `rental`: 대여 내역
-
-**💡 구현 힌트**
-- `film` 테이블을 중심으로 `inventory`를 조인하여 각 매장별 재고를 `COUNT`와 `CASE`문(또는 `FILTER` 조건)을 사용하여 컬럼으로 분리(`Pivot` 형태)해 보세요.
-- 대여 횟수를 구하기 위해 `inventory` 테이블과 `rental` 테이블을 조인합니다. 이 때 `LEFT JOIN`의 특성을 잘 활용하고, `COUNT` 안에는 `rental_id` 같이 결측치가 발생하는 컬럼을 넣어야 대여된 적 없는 경우 0이 올바르게 계산됩니다.
-- 구한 집계값에 대한 조건은 `WHERE`가 아닌 `HAVING` 절에 작성해야 집계 결과를 필터링할 수 있습니다.
+| film\_id | title | rating | total\_rentals | popularity\_label |
+| :--- | :--- | :--- | :--- | :--- |
+| 738 | Rocketeer Mother | PG-13 | 33 | Hot |
+| 489 | Juggler Hardly | PG-13 | 32 | Hot |
+| 730 | Ridgemont Submarine | PG-13 | 32 | Hot |
+| 418 | Hobbit Alien | PG-13 | 31 | Hot |
+| 621 | Network Peak | PG-13 | 31 | Hot |
+| 735 | Robbers Joon | PG-13 | 31 | Hot |
+| 285 | English Bulworth | PG-13 | 30 | Hot |
+| 403 | Harry Idaho | PG-13 | 30 | Hot |
+| 563 | Massacre Usual | R | 30 | Hot |
+| 748 | Rugrats Shakespeare | PG-13 | 30 | Hot |
